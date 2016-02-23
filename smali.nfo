@@ -1,0 +1,29 @@
+usage: java -jar smali.jar [options] [--] [<smali-file>|folder]*
+assembles a set of smali files into a dex file
+ -?,--help                      prints the help message then exits. Specify
+                                twice for debug options
+ -a,--api-level <API_LEVEL>     The numeric api-level of the file to generate,
+                                e.g. 14 for ICS. If not specified, it defaults
+                                to 15 (ICS).
+ -f,--list-fields <FILE>        Lists all the field references to FILE
+                                (<output_dex_filename>.fields by default)
+ -j,--jobs <NUM_THREADS>        The number of threads to use. Defaults to the
+                                number of cores available, up to a maximum of 6
+ -m,--list-methods <FILE>       Lists all the method references to FILE
+                                (<output_dex_filename>.methods by default)
+ -o,--output <FILE>             the name of the dex file that will be written.
+                                The default is out.dex
+ -t,--list-types <FILE>         Lists all the type references to FILE
+                                (<output_dex_filename>.types by default)
+ -v,--version                   prints the version then exits
+ -X,--experimental              enable experimental opcodes to be assembled,
+                                even if they  aren't necessarily supported by
+                                the Android runtime yet
+ -x,--allow-odex-instructions   allow odex instructions to be compiled into the
+                                dex file. Only a few instructions are supported
+                                - the ones that can exist in a dead code path
+                                and not cause dalvik to reject the class
+
+Debug Options:
+ -T,--print-tokens     Print the name and text of each token
+ -V,--verbose-errors   Generate verbose error messages

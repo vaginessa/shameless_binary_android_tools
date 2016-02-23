@@ -1,0 +1,104 @@
+usage: java -jar baksmali.jar [options] <dex-file>
+disassembles and/or dumps a dex file
+ -?,--help                                  prints the help message then exits.
+                                            Specify twice for debug options
+ -a,--api-level <API_LEVEL>                 The numeric api-level of the file
+                                            being disassembled. If not
+                                            specified, it defaults to 15 (ICS).
+ -b,--no-debug-info                         don't write out debug info (.local,
+                                            .param, .line, etc.)
+ -c,--bootclasspath <BOOTCLASSPATH>         A colon-separated list of
+                                            bootclasspath jar/oat files to use
+                                            for analysis. Add an initial colon
+                                            to specify that the jars/oats should
+                                            be appended to the default
+                                            bootclasspath instead of replacing
+                                            it
+ -d,--bootclasspath-dir <DIR>               the base folder to look for the
+                                            bootclasspath files in. Defaults to
+                                            the current directory
+ -e,--dex-file <DEX_FILE>                   looks for dex file named DEX_FILE,
+                                            defaults to classes.dex
+ -f,--code-offsets                          add comments to the disassembly
+                                            containing the code offset for each
+                                            address
+ -i,--resource-id-files <FILES>             the resource ID files to use, for
+                                            analysis. A colon-separated list of
+                                            prefix=file pairs.  For example
+                                            R=res/values/public.xml:android.R=$A
+                                            NDROID_HOME/platforms/android-19/dat
+                                            a/res/values/public.xml
+ -j,--jobs <NUM_THREADS>                    The number of threads to use.
+                                            Defaults to the number of cores
+                                            available, up to a maximum of 6
+ -k,--check-package-private-access          When deodexing, use the
+                                            package-private access check when
+                                            calculating vtable indexes. It
+                                            should only be needed for 4.2.0
+                                            odexes. The functionality was
+                                            reverted for 4.2.1.
+ -l,--use-locals                            output the .locals directive with
+                                            the number of non-parameter
+                                            registers, rather than the .register
+                                            directive with the total number of
+                                            register
+ -m,--no-accessor-comments                  don't output helper comments for
+                                            synthetic accessors
+ -n,--normalize-virtual-methods             Normalize virtual method references
+                                            to the reference the base method.
+ -o,--output <DIR>                          the directory where the disassembled
+                                            files will be placed. The default is
+                                            out
+ -p,--no-parameter-registers                use the v<n> syntax instead of the
+                                            p<n> syntax for registers mapped to
+                                            method parameters
+ -r,--register-info <REGISTER_INFO_TYPES>   print the specificed type(s) of
+                                            register information for each
+                                            instruction. "ARGS,DEST" is the
+                                            default if no types are specified.
+                                            Valid values are:
+                                            ALL: all pre- and post-instruction
+                                            registers.
+                                            ALLPRE: all pre-instruction
+                                            registers
+                                            ALLPOST: all post-instruction
+                                            registers
+                                            ARGS: any pre-instruction registers
+                                            used as arguments to the instruction
+                                            DEST: the post-instruction
+                                            destination register, if any
+                                            MERGE: Any pre-instruction register
+                                            has been merged from more than 1
+                                            different post-instruction register
+                                            from its predecessors
+                                            FULLMERGE: For each register that
+                                            would be printed by MERGE, also show
+                                            the incoming register types that
+                                            were merged
+ -s,--sequential-labels                     create label names using a
+                                            sequential numbering scheme per
+                                            label type, rather than using the
+                                            bytecode address
+ -t,--implicit-references                   Use implicit (type-less) method and
+                                            field references
+ -v,--version                               prints the version then exits
+ -X,--experimental                          enable experimental opcodes to be
+                                            disassembled, even if they aren't
+                                            necessarily supported in the Android
+                                            runtime yet
+ -x,--deodex                                deodex the given odex file. This
+                                            option is ignored if the input file
+                                            is not an odex file
+
+Debug Options:
+ -D,--dump-to <FILE>        dumps the given dex file into a single annotated
+                            dump file named FILE (<dexfile>.dump by default),
+                            along with the normal disassembly
+ -I,--ignore-errors         ignores any non-fatal errors that occur while
+                            disassembling/deodexing, ignoring the class if
+                            needed, and continuing with the next class. The
+                            default behavior is to stop disassembling and exit
+                            once an error is encountered
+ -N,--no-disassembly        suppresses the output of the disassembly
+ -T,--inline-table <FILE>   specify a file containing a custom inline method
+                            table to use for deodexing
